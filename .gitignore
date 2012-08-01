@@ -11,3 +11,4 @@ lint.xml
 # Mac OS X ignores
 .DS_Store*
 ._*
+.project
