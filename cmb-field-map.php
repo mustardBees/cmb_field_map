@@ -29,7 +29,7 @@ function pw_google_maps_field( $field, $meta ) {
 	
 	if ( ! empty( $field['desc'] ) ) echo '<p class="cmb_metabox_description">' . $field['desc'] . '</p>';
 }
-add_filter( 'cmb_render_pw_google_map', 'pw_google_maps_field', 10, 2 );
+add_filter( 'cmb_render_pw_map', 'pw_google_maps_field', 10, 2 );
 
 /**
  * Split latitude/longitude values into two meta fields
@@ -48,4 +48,4 @@ function pw_google_maps_field_validation( $new, $post_id, $field ) {
 	
 	return $new;
 }
-add_filter( 'cmb_validate_pw_google_map', 'pw_google_maps_field_validation', 10, 3 );
+add_filter( 'cmb_validate_pw_map', 'pw_google_maps_field_validation', 10, 3 );
