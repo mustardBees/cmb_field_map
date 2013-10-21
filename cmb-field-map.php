@@ -3,7 +3,7 @@
 Plugin Name: CMB Field Type: Google Maps
 Plugin URI: https://github.com/mustardBees/cmb_field_map
 Description: Google Maps field type for Custom Metaboxes and Fields for WordPress.
-Version: 1.2
+Version: 1.3
 Author: Phil Wylie
 Author URI: http://www.philwylie.co.uk/
 License: GPLv2+
@@ -20,12 +20,12 @@ function pw_google_maps_field( $field, $meta ) {
 	wp_enqueue_script( 'pw_google_maps_init', PW_GOOGLE_MAPS_URL . 'js/script.js', array( 'pw_google_maps_api' ), null );
 	wp_enqueue_style( 'pw_google_maps_css', PW_GOOGLE_MAPS_URL . 'css/style.css', array(), null );
 
-	echo '<div id="google_maps_search">';
-	echo '	<input type="text" id="' . $field['id'] . '" />';
+	echo '<div class="pw-google-map">';
+	echo '	<input type="text" class="map-search" id="' . $field['id'] . '" />';
+	echo '	<div class="map"></div>';
+	echo '	<input type="hidden" class="latitude" name="' . $field['id'] . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
+	echo '	<input type="hidden" class="longitude" name="' . $field['id'] . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
 	echo '</div>';
-	echo '<input type="hidden" id="latitude" name="' . $field['id'] . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
-	echo '<input type="hidden" id="longitude" name="' . $field['id'] . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
-	echo '<div id="map_canvas"></div>';
 
 	if ( ! empty( $field['desc'] ) ) echo '<p class="cmb_metabox_description">' . $field['desc'] . '</p>';
 }
