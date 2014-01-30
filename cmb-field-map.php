@@ -34,18 +34,17 @@ add_filter( 'cmb_render_pw_map', 'pw_map_field', 10, 2 );
 /**
  * Split latitude/longitude values into two meta fields
  */
-function pw_google_maps_field_validation( $new, $post_id, $field ) {
-	$latitude = $new['latitude'];
-	$longitude = $new['longitude'];
+function pw_map_sanitise( $meta_value, $field ) {
+	$latitude = $meta_value['latitude'];
+	$longitude = $meta_value['longitude'];
 
-	if ( '' !== $latitude ) {
-		update_post_meta( $post_id, $field['id'] . '_latitude', $latitude );
+	if ( ! empty( $latitude ) ) {
+		update_post_meta( get_the_ID(), $field['id'] . '_latitude', $latitude );
 	}
 
-	if ( '' !== $longitude ) {
-		update_post_meta( $post_id, $field['id'] . '_longitude', $longitude );
+	if ( ! empty( $longitude ) ) {
+		update_post_meta( get_the_ID(), $field['id'] . '_longitude', $longitude );
 	}
 
-	return $new;
+	return $meta_value;
 }
-add_filter( 'cmb_validate_pw_map', 'pw_google_maps_field_validation', 10, 3 );

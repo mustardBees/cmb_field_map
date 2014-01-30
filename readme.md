@@ -16,6 +16,7 @@ array(
 	'desc' => 'Drag the marker to set the exact location',
 	'id' => $prefix . 'location',
 	'type' => 'pw_map',
+	'sanitization_cb' => 'pw_map_sanitise',
 ),
 ```
 
