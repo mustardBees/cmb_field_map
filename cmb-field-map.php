@@ -20,12 +20,10 @@ function pw_map_field( $field, $meta ) {
 	wp_enqueue_script( 'pw_google_maps_init', PW_GOOGLE_MAPS_URL . 'js/script.js', array( 'pw_google_maps_api' ), null );
 	wp_enqueue_style( 'pw_google_maps_css', PW_GOOGLE_MAPS_URL . 'css/style.css', array(), null );
 
-	echo '<div class="pw-google-map">';
-	echo '	<input type="text" class="map-search" id="' . $field['id'] . '" />';
-	echo '	<div class="map"></div>';
-	echo '	<input type="hidden" class="latitude" name="' . $field['id'] . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
-	echo '	<input type="hidden" class="longitude" name="' . $field['id'] . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
-	echo '</div>';
+	echo '<input type="text" class="map-search" id="' . $field['id'] . '" />';
+	echo '<div class="map"></div>';
+	echo '<input type="hidden" class="latitude" name="' . $field['id'] . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
+	echo '<input type="hidden" class="longitude" name="' . $field['id'] . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
 
 	if ( ! empty( $field['desc'] ) ) echo '<p class="cmb_metabox_description">' . $field['desc'] . '</p>';
 }

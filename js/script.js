@@ -1,6 +1,6 @@
 (function ($) {
 
- 	$('.pw-google-map').each(function() {
+ 	$('.cmb-type-pw_map').each(function() {
 		var searchInput = $('.map-search', this).get(0);
 		var mapCanvas = $('.map', this).get(0);
 		var latitude = $('.latitude', this);
