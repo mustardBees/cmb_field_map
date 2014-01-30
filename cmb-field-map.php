@@ -15,7 +15,7 @@ define( 'PW_GOOGLE_MAPS_URL', plugin_dir_url( __FILE__ ) );
 /**
  * Render field
  */
-function pw_google_maps_field( $field, $meta ) {
+function pw_map_field( $field, $meta ) {
 	wp_enqueue_script( 'pw_google_maps_api', 'http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', array(), null );
 	wp_enqueue_script( 'pw_google_maps_init', PW_GOOGLE_MAPS_URL . 'js/script.js', array( 'pw_google_maps_api' ), null );
 	wp_enqueue_style( 'pw_google_maps_css', PW_GOOGLE_MAPS_URL . 'css/style.css', array(), null );
@@ -29,7 +29,7 @@ function pw_google_maps_field( $field, $meta ) {
 
 	if ( ! empty( $field['desc'] ) ) echo '<p class="cmb_metabox_description">' . $field['desc'] . '</p>';
 }
-add_filter( 'cmb_render_pw_map', 'pw_google_maps_field', 10, 2 );
+add_filter( 'cmb_render_pw_map', 'pw_map_field', 10, 2 );
 
 /**
  * Split latitude/longitude values into two meta fields
