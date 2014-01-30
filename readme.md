@@ -2,7 +2,7 @@
 
 ## Description
 
-Google Maps field type for [Custom Metaboxes and Fields for WordPress](https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress).
+Google Maps field type for [Custom Metaboxes and Fields for WordPress](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress).
 
 The `pw_map` field stores the latitude/longitude values which you can then use to display a map in your theme.
 
