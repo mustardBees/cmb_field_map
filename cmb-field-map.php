@@ -16,7 +16,7 @@ define( 'PW_GOOGLE_MAPS_URL', plugin_dir_url( __FILE__ ) );
  * Render field
  */
 function pw_map_field( $field, $meta ) {
-	wp_enqueue_script( 'pw_google_maps_api', 'http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', array(), null );
+	wp_enqueue_script( 'pw_google_maps_api', '//maps.googleapis.com/maps/api/js?sensor=false&libraries=places', array(), null );
 	wp_enqueue_script( 'pw_google_maps_init', PW_GOOGLE_MAPS_URL . 'js/script.js', array( 'pw_google_maps_api' ), null );
 	wp_enqueue_style( 'pw_google_maps_css', PW_GOOGLE_MAPS_URL . 'css/style.css', array(), null );
 
