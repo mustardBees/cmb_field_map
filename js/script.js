@@ -62,6 +62,12 @@
 				e.preventDefault();
 			}
 		});
+
+		// Resize map when meta box is opened
+		postboxes.pbshow = function() {
+			google.maps.event.trigger(map, "resize");
+			map.setCenter(latLng);
+		};
     });
 
 }(jQuery));
