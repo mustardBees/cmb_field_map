@@ -2,7 +2,9 @@
 
 ## Description
 
-Google Maps field type for [Custom Metaboxes and Fields for WordPress](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress).
+Google Maps field type for [CMB2](https://github.com/WebDevStudios/CMB2 "Custom Metaboxes and Fields for WordPress 2").
+
+**Running an older version of CMB? Check the [previous releases](https://github.com/mustardBees/cmb_field_map/releases).**
 
 The `pw_map` field stores the latitude/longitude values which you can then use to display a map in your theme.
 
@@ -10,7 +12,7 @@ The `pw_map` field stores the latitude/longitude values which you can then use t
 
 You can install this field type as you would a WordPress plugin:
 
-1. Download the plugin ([running an older version of CMB?](https://github.com/mustardBees/cmb_field_map/releases))
+1. Download the plugin
 2. Place the plugin folder in your `/wp-content/plugins/` directory
 3. Activate the plugin in the Plugin dashboard
 
