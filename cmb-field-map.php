@@ -20,12 +20,12 @@ function pw_map_field( $field, $meta ) {
 	wp_enqueue_script( 'pw_google_maps_init', PW_GOOGLE_MAPS_URL . 'js/script.js', array( 'pw_google_maps_api' ), null );
 	wp_enqueue_style( 'pw_google_maps_css', PW_GOOGLE_MAPS_URL . 'css/style.css', array(), null );
 
-	echo '<input type="text" class="large-text map-search" id="' . $field->args['id'] . '" />';
+	echo '<input type="text" class="large-text map-search" id="' . $field->args( 'id' ) . '" />';
 	echo '<div class="map"></div>';
-	echo '<input type="hidden" class="latitude" name="' . $field->args['id'] . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
-	echo '<input type="hidden" class="longitude" name="' . $field->args['id'] . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
+	echo '<input type="hidden" class="latitude" name="' . $field->args( 'id' ) . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
+	echo '<input type="hidden" class="longitude" name="' . $field->args( 'id' ) . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
 
-	if ( ! empty( $field->args['desc'] ) ) echo '<p class="cmb2_metabox_description">' . $field->args['desc'] . '</p>';
+	if ( ! empty( $field->args( 'desc' ) ) ) echo '<p class="cmb2_metabox_description">' . $field->args( 'desc' ) . '</p>';
 }
 add_filter( 'cmb2_render_pw_map', 'pw_map_field', 10, 2 );
 
