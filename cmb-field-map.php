@@ -25,7 +25,7 @@ function pw_map_field( $field, $meta ) {
 	echo '<input type="hidden" class="latitude" name="' . $field->args( 'id' ) . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
 	echo '<input type="hidden" class="longitude" name="' . $field->args( 'id' ) . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
 
-	if ( ! empty( $field->args( 'desc' ) ) ) echo '<p class="cmb2_metabox_description">' . $field->args( 'desc' ) . '</p>';
+	if ( ! empty( $field->args( 'desc' ) ) ) echo '<p class="cmb2-metabox-description">' . $field->args( 'desc' ) . '</p>';
 }
 add_filter( 'cmb2_render_pw_map', 'pw_map_field', 10, 2 );
 
