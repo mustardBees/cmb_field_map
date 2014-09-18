@@ -3,7 +3,7 @@
 Plugin Name: CMB Field Type: Google Maps
 Plugin URI: https://github.com/mustardBees/cmb_field_map
 Description: Google Maps field type for Custom Metaboxes and Fields for WordPress.
-Version: 2.0.3
+Version: 2.0.4
 Author: Phil Wylie
 Author URI: http://www.philwylie.co.uk/
 License: GPLv2+
@@ -25,7 +25,7 @@ function pw_map_field( $field, $meta ) {
 	echo '<input type="hidden" class="latitude" name="' . $field->args( 'id' ) . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
 	echo '<input type="hidden" class="longitude" name="' . $field->args( 'id' ) . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
 
-	$desc = $field->args('desc');
+	$desc = $field->args( 'desc' );
 	if ( ! empty( $desc ) ) echo '<p class="cmb2-metabox-description">' . $desc . '</p>';
 }
 add_filter( 'cmb2_render_pw_map', 'pw_map_field', 10, 2 );
