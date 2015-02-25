@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: CMB Field Type: Google Maps
+Plugin Name: CMB2 Field Type: Google Maps
 Plugin URI: https://github.com/mustardBees/cmb_field_map
-Description: Google Maps field type for Custom Metaboxes and Fields for WordPress.
+Description: Google Maps field type for CMB2.
 Version: 2.0.4
 Author: Phil Wylie
 Author URI: http://www.philwylie.co.uk/
