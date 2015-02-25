@@ -1,5 +1,5 @@
 {
-    "name": "Peytz_WordPress/cmb_field_map",
+    "name": "mustardbees/cmb_field_map",
     "description": "Google Maps field type for Custom Metaboxes and Fields for WordPress",
     "type": "wordpress-plugin",
     "keywords": ["wordpress", "plugin"],
