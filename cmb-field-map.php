@@ -3,47 +3,82 @@
 Plugin Name: CMB2 Field Type: Google Maps
 Plugin URI: https://github.com/mustardBees/cmb_field_map
 Description: Google Maps field type for CMB2.
-Version: 2.0.5
+Version: 2.1.0
 Author: Phil Wylie
 Author URI: http://www.philwylie.co.uk/
 License: GPLv2+
 */
 
-// Useful global constants
-define( 'PW_GOOGLE_MAPS_URL', plugin_dir_url( __FILE__ ) );
-
 /**
- * Render field
+ * Class PW_CMB2_Field_Google_Maps
  */
-function pw_map_field( $field, $meta ) {
-	wp_enqueue_script( 'pw_google_maps_api', '//maps.googleapis.com/maps/api/js?sensor=false&libraries=places', array(), null );
-	wp_enqueue_script( 'pw_google_maps_init', PW_GOOGLE_MAPS_URL . 'js/script.js', array( 'pw_google_maps_api' ), null );
-	wp_enqueue_style( 'pw_google_maps_css', PW_GOOGLE_MAPS_URL . 'css/style.css', array(), null );
+class PW_CMB2_Field_Google_Maps {
 
-	echo '<input type="text" class="large-text map-search" id="' . $field->args( 'id' ) . '" />';
-	echo '<div class="map"></div>';
-	echo '<input type="hidden" class="latitude" name="' . $field->args( 'id' ) . '[latitude]" value="' . ( isset( $meta['latitude'] ) ? $meta['latitude'] : '' ) . '" />';
-	echo '<input type="hidden" class="longitude" name="' . $field->args( 'id' ) . '[longitude]" value="' . ( isset( $meta['longitude'] ) ? $meta['longitude'] : '' ) . '" />';
+	/**
+	 * Current version number
+	 */
+	const VERSION = '2.1.0';
 
-	$desc = $field->args( 'desc' );
-	if ( ! empty( $desc ) ) echo '<p class="cmb2-metabox-description">' . $desc . '</p>';
-}
-add_filter( 'cmb2_render_pw_map', 'pw_map_field', 10, 2 );
-
-/**
- * Split latitude/longitude values into two meta fields
- */
-function pw_map_sanitise( $meta_value, $field ) {
-	$latitude = $meta_value['latitude'];
-	$longitude = $meta_value['longitude'];
-
-	if ( ! empty( $latitude ) ) {
-		update_post_meta( get_the_ID(), $field['id'] . '_latitude', $latitude );
+	/**
+	 * Initialize the plugin by hooking into CMB2
+	 */
+	public function __construct() {
+		add_filter( 'cmb2_render_pw_map', array( $this, 'render_pw_map' ), 10, 5 );
+		add_filter( 'cmb2_sanitize_pw_map', array( $this, 'sanitize_pw_map' ), 10, 4 );
 	}
 
-	if ( ! empty( $longitude ) ) {
-		update_post_meta( get_the_ID(), $field['id'] . '_longitude', $longitude );
+	/**
+	 * Render field
+	 */
+	public function render_pw_map( $field, $field_escaped_value, $field_object_id, $field_object_type, $field_type_object ) {
+		$this->setup_admin_scripts();
+
+		echo '<input type="text" class="large-text pw-map-search" id="' . $field->args( 'id' ) . '" />';
+
+		echo '<div class="pw-map"></div>';
+
+		$field_type_object->_desc( true, true );
+
+		echo $field_type_object->input( array(
+			'type'       => 'hidden',
+			'name'       => $field->args('_name') . '[latitude]',
+			'value'      => isset( $field_escaped_value['latitude'] ) ? $field_escaped_value['latitude'] : '',
+			'class'      => 'pw-map-latitude',
+			'desc'       => '',
+		) );
+		echo $field_type_object->input( array(
+			'type'       => 'hidden',
+			'name'       => $field->args('_name') . '[longitude]',
+			'value'      => isset( $field_escaped_value['longitude'] ) ? $field_escaped_value['longitude'] : '',
+			'class'      => 'pw-map-longitude',
+			'desc'       => '',
+		) );
 	}
 
-	return $meta_value;
+	/**
+	 * Optionally save the latitude/longitude values into two custom fields
+	 */
+	public function sanitize_pw_map( $override_value, $value, $object_id, $field_args ) {
+		if ( isset( $field_args['split_values'] ) && $field_args['split_values'] ) {
+			if ( ! empty( $value['latitude'] ) ) {
+				update_post_meta( $object_id, $field_args['id'] . '_latitude', $value['latitude'] );
+			}
+
+			if ( ! empty( $value['longitude'] ) ) {
+				update_post_meta( $object_id, $field_args['id'] . '_longitude', $value['longitude'] );
+			}
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Enqueue scripts and styles
+	 */
+	public function setup_admin_scripts() {
+		wp_register_script( 'pw-google-maps-api', '//maps.googleapis.com/maps/api/js?sensor=false&libraries=places', null, null );
+		wp_enqueue_script( 'pw-google-maps', plugins_url( 'js/script.js', __FILE__ ), array( 'pw-google-maps-api' ), self::VERSION );
+		wp_enqueue_style( 'pw-google-maps', plugins_url( 'css/style.css', __FILE__ ), array(), self::VERSION );
+	}
 }
+$pw_cmb2_field_google_maps = new PW_CMB2_Field_Google_Maps();

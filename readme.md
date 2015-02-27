@@ -1,10 +1,8 @@
-# CMB Field Type: Google Maps
+# CMB2 Field Type: Google Maps
 
 ## Description
 
-Google Maps field type for [CMB2](https://github.com/WebDevStudios/CMB2 "Custom Metaboxes and Fields for WordPress 2").
-
-**Running an older version of CMB? Check the [previous releases](https://github.com/mustardBees/cmb_field_map/releases).**
+Google Maps field type for [CMB2](https://github.com/WebDevStudios/CMB2).
 
 The `pw_map` field stores the latitude/longitude values which you can then use to display a map in your theme.
 
@@ -16,21 +14,11 @@ You can install this field type as you would a WordPress plugin:
 2. Place the plugin folder in your `/wp-content/plugins/` directory
 3. Activate the plugin in the Plugin dashboard
 
-Alternatively, you can place the plugin folder in with your theme/plugin. After you call CMB:
-
-```php
-require_once 'init.php';
-```
-
-Add another line to include the `cmb-field-map.php` file. Something like:
-
-```php
-require_once 'cmb_field_map/cmb-field-map.php';
-```
-
 ## Usage
 
-`pw_map` - Save a location on a map. Example:
+### `pw_map`
+
+Save a location on a map. Example:
 
 ```php
 array(
@@ -38,9 +26,13 @@ array(
 	'desc' => 'Drag the marker to set the exact location',
 	'id' => $prefix . 'location',
 	'type' => 'pw_map',
-	'sanitization_cb' => 'pw_map_sanitise',
+	// 'split_values' => true, // Save latitude and longitude as two separate fields
 ),
 ```
+
+#### Extra Parameters:
+
+* `split_values` Save the latitude/longitude values into two custom fields, they will be stored as `$id . '_latitude'` and `$id . '_longitude'`.
 
 ## Screenshot
 
