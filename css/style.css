@@ -5,3 +5,6 @@
 	border: solid 1px #DDD;
 	box-sizing: border-box;
 }
+.pw-map img {
+	max-width: none;
+}
