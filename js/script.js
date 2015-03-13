@@ -79,14 +79,16 @@
 	}
 
 	// Resize map when meta box is opened
-	postboxes.pbshow = function() {
-		var arrayLength = maps.length;
-		for ( var i = 0; i < arrayLength; i++ ) {
-			var mapCenter = maps[i].getCenter();
-			google.maps.event.trigger( maps[i], 'resize' );
-			maps[i].setCenter( mapCenter );
-		}
-	};
+	if ( typeof postboxes !== 'undefined' ) {
+		postboxes.pbshow = function () {
+			var arrayLength = maps.length;
+			for (var i = 0; i < arrayLength; i++) {
+				var mapCenter = maps[i].getCenter();
+				google.maps.event.trigger(maps[i], 'resize');
+				maps[i].setCenter(mapCenter);
+			}
+		};
+	}
 
 	// When a new row is added, reinitialize Google Maps
 	$( '.cmb-repeatable-group' ).on( 'cmb2_add_row', function( event, newRow ) {
