@@ -1,3 +1,5 @@
+//set a global var to make it easy to customize
+window.Map_Data = window.Map_Data || {};
 (function( $ ) {
 	'use strict';
 
@@ -14,7 +16,10 @@
 		var longitude = mapInstance.find( '.pw-map-longitude' );
 		var latLng = new google.maps.LatLng( 54.800685, -4.130859 );
 		var zoom = 5;
-
+        
+        //store the maps array
+        Map_Data.GMaps = maps;
+        
 		// If we have saved values, let's set the position and zoom level
 		if ( latitude.val().length > 0 && longitude.val().length > 0 ) {
 			latLng = new google.maps.LatLng( latitude.val(), longitude.val() );
@@ -35,6 +40,9 @@
 			title: 'Drag to set the exact location'
 		};
 		var marker = new google.maps.Marker( markerOptions );
+        
+        //store the marker
+        Map_Data.GMaps.marker = marker;
 
 		if ( latitude.val().length > 0 && longitude.val().length > 0 ) {
 			marker.setPosition( latLng );
