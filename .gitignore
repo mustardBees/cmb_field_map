@@ -1,0 +1,17 @@
+# OS or IDE folders/files to ignore
+*~
+._*
+*.lock
+*.DS_Store
+*.swp
+*.out
+.cache
+.project
+.settings
+nbproject
+thumb.db
+Thumbs.db
+.idea
+
+
+# Project specific files to ignore

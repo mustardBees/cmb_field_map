@@ -1,0 +1,13 @@
+{
+    "name": "mustardbees/cmb_field_map",
+    "description": "Google Maps field type for Custom Metaboxes and Fields for WordPress",
+    "type": "wordpress-plugin",
+    "keywords": ["wordpress", "plugin"],
+    "homepage": "https://github.com/mustardBees/cmb_field_map/",
+    "authors": [
+        {
+            "name": "Phil Wylie",
+            "homepage": "http://www.philwylie.co.uk/"
+        }
+    ]
+}
