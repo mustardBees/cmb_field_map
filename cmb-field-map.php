@@ -77,6 +77,10 @@ class PW_CMB2_Field_Google_Maps {
 			}
 		}
 
+		if( ! empty( $value['address'] ) ) {
+			update_post_meta( $object_id, $field_args['id'] . '_address', $value['address'] );
+		}
+
 		return $value;
 	}
 
