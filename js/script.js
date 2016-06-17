@@ -13,15 +13,15 @@
 		var latitude = mapInstance.find( '.pw-map-latitude' );
 		var longitude = mapInstance.find( '.pw-map-longitude' );
 		var resetBtn = mapInstance.find('.pw-map-reset');
-		var defaultLatLng = new google.maps.LatLng( 54.800685, -4.130859 );
-		var defaultZoom = 5;
+		var defaultLatLng = new google.maps.LatLng( pw_google_maps.default_lat, pw_google_maps.default_lng );
+		var defaultZoom = Number( pw_google_maps.default_zoom );
 		var latLng = defaultLatLng;
 		var zoom = defaultZoom;
 
 		// If we have saved values, let's set the position and zoom level
 		if ( latitude.val().length > 0 && longitude.val().length > 0 ) {
 			latLng = new google.maps.LatLng( latitude.val(), longitude.val() );
-			zoom = 17;
+			zoom = Number( pw_google_maps.marker_zoom );
 		}
 
 		// Map
@@ -34,8 +34,8 @@
 		// Marker
 		var markerOptions = {
 			map: map,
-			draggable: true,
-			title: 'Drag to set the exact location'
+			draggable: ( pw_google_maps.marker_draggable === "true" ),
+			title: pw_google_maps.marker_title
 		};
 		var marker = new google.maps.Marker( markerOptions );
 
@@ -57,7 +57,7 @@
 				map.fitBounds( place.geometry.viewport );
 			} else {
 				map.setCenter( place.geometry.location );
-				map.setZoom( 17 );
+				map.setZoom( Number( pw_google_maps.marker_zoom ) );
 			}
 
 			// Ensure marker is on the map (it may have been removed by reset)
@@ -107,10 +107,10 @@
 		};
 	}
 
-	// When a new row is added, reinitialize Google Maps
+	// When a new row in a group is added, reinitialize Google Maps
 	$( '.cmb-repeatable-group' ).on( 'cmb2_add_row', function( event, newRow ) {
 		var groupWrap = $( newRow ).closest( '.cmb-repeatable-group' );
-		groupWrap.find( '.cmb-type-pw-map' ).each( function() {
+		groupWrap.find( '.cmb-row.cmb-repeatable-grouping' ).each( function() {
 			initializeMap( $( this ) );
 		});
 	});

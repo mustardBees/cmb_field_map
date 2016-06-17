@@ -51,18 +51,21 @@ class PW_CMB2_Field_Google_Maps {
 		$field_type_object->_desc( true, true );
 
 		echo $field_type_object->input( array(
-			'type'       => 'hidden',
-			'name'       => $field->args('_name') . '[latitude]',
-			'value'      => isset( $field_escaped_value['latitude'] ) ? $field_escaped_value['latitude'] : '',
-			'class'      => 'pw-map-latitude',
-			'desc'       => '',
+			'type'  => 'hidden',
+			'name'  => $field->args( '_name' ) . '[latitude]',
+			'value' => isset( $field_escaped_value['latitude'] ) ? $field_escaped_value['latitude'] : '',
+			'id'    => $field->args( 'id' ) . '_latitude',
+			'class' => 'pw-map-latitude',
+			'desc'  => '',
 		) );
+
 		echo $field_type_object->input( array(
-			'type'       => 'hidden',
-			'name'       => $field->args('_name') . '[longitude]',
-			'value'      => isset( $field_escaped_value['longitude'] ) ? $field_escaped_value['longitude'] : '',
-			'class'      => 'pw-map-longitude',
-			'desc'       => '',
+			'type'  => 'hidden',
+			'name'  => $field->args( '_name' ) . '[longitude]',
+			'value' => isset( $field_escaped_value['longitude'] ) ? $field_escaped_value['longitude'] : '',
+			'id'    => $field->args( 'id' ) . '_longitude',
+			'class' => 'pw-map-longitude',
+			'desc'  => '',
 		) );
 	}
 
@@ -90,6 +93,14 @@ class PW_CMB2_Field_Google_Maps {
 		wp_register_script( 'pw-google-maps-api', "https://maps.googleapis.com/maps/api/js?key={$api_key}&libraries=places", null, null );
 		wp_enqueue_script( 'pw-google-maps', plugins_url( 'js/script.js', __FILE__ ), array( 'pw-google-maps-api', 'jquery' ), self::VERSION );
 		wp_enqueue_style( 'pw-google-maps', plugins_url( 'css/style.css', __FILE__ ), array(), self::VERSION );
+		wp_localize_script( 'pw-google-maps', 'pw_google_maps', array(
+			'default_zoom'     => apply_filters( 'pw_map_default_zoom', 5 ),
+			'default_lat'      => apply_filters( 'pw_map_default_lat', '54.800685' ),
+			'default_lng'      => apply_filters( 'pw_map_default_lng', '-4.130859' ),
+			'marker_zoom'      => apply_filters( 'pw_map_marker_zoom', 15 ),
+			'marker_draggable' => apply_filters( 'pw_map_marker_draggable', 'true' ),
+			'marker_title'     => apply_filters( 'pw_map_marker_title', 'Drag to set the exact location' )
+		) );
 	}
 
 	/**
