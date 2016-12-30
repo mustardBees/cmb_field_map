@@ -54,6 +54,8 @@ class PW_CMB2_Field_Google_Maps {
 			'class'      => 'pw-map-longitude',
 			'desc'       => '',
 		) );
+
+		do_action( 'pw-map-extra-extra-fields', $field, $field_escaped_value, $field_object_id, $field_object_type, $field_type_object );
 	}
 
 	/**
