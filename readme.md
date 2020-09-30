@@ -14,6 +14,12 @@ You can install this field type as you would a WordPress plugin:
 2. Place the plugin folder in your `/wp-content/plugins/` directory
 3. Activate the plugin in the Plugin dashboard
 
+Or you can use WP-CLI to install from GitHub.
+
+```
+wp plugin install --activate https://github.com/mustardBees/cmb_field_map/archive/master.zip
+```
+
 ## Google API Key
 
 You'll need to [generate a Google API key](https://cloud.google.com/maps-platform/#get-started) with both "Maps JavaScript API" and "Places API" enabled.
