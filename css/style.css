@@ -8,3 +8,7 @@
 .pw-map img {
 	max-width: none;
 }
+.cmb2-wrap.form-table .cmb-row.cmb-type-pw-map > .cmb-td{
+    width: 100%;
+    max-width: 540px;
+}
