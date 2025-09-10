@@ -46,6 +46,8 @@ class PW_CMB2_Field_Google_Maps {
 
 		echo '<div class="pw-map"></div>';
 
+		echo '<button type="button" class="button pw-map-reset">Reset Location</button>';
+
 		$field_type_object->_desc( true, true );
 
 		echo $field_type_object->input( array(
