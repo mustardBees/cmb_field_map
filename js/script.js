@@ -37,7 +37,7 @@
 		};
 		var marker = new google.maps.Marker( markerOptions );
 
-		if ( latitude.val().length > 0 && longitude.val().length > 0 ) {
+		if ( latitude.length && latitude.val().length > 0 && longitude.length && longitude.val().length > 0 ) {
 			marker.setPosition( latLng );
 		}
 
