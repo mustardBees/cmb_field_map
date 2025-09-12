@@ -12,6 +12,7 @@
 		var mapCanvas = mapInstance.find( '.pw-map' );
 		var latitude = mapInstance.find( '.pw-map-latitude' );
 		var longitude = mapInstance.find( '.pw-map-longitude' );
+		var $resetBtn = mapInstance.find('.pw-map-reset');
 		var latLng = new google.maps.LatLng( 54.800685, -4.130859 );
 		var zoom = 5;
 
@@ -73,6 +74,16 @@
 		google.maps.event.addListener( marker, 'drag', function() {
 			latitude.val( marker.getPosition().lat() );
 			longitude.val( marker.getPosition().lng() );
+		});
+
+		// Reset button handler
+		$resetBtn.on('click', function(e) {
+			e.preventDefault();
+			marker.setMap(null);
+			map.setCenter(latLng);
+			map.setZoom(5);
+			latitude.val('');
+			longitude.val('');
 		});
 
 		maps.push( map );
