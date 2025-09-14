@@ -72,11 +72,11 @@ class PW_CMB2_Field_Google_Maps {
 	public function sanitize_pw_map( $override_value, $value, $object_id, $field_args ) {
 		if ( isset( $field_args['split_values'] ) && $field_args['split_values'] ) {
 			if ( ! empty( $value['latitude'] ) ) {
-				update_post_meta( $object_id, $field_args['id'] . '_latitude', $value['latitude'] );
+				update_post_meta( $object_id, $field_args['id'] . '_latitude', sanitize_text_field( ( (float) $value['latitude'] ) ) );
 			}
 
 			if ( ! empty( $value['longitude'] ) ) {
-				update_post_meta( $object_id, $field_args['id'] . '_longitude', $value['longitude'] );
+				update_post_meta( $object_id, $field_args['id'] . '_longitude', sanitize_text_field( (float) $value['longitude'] ) );
 			}
 		}
 
