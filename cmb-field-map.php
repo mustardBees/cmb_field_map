@@ -4,7 +4,7 @@ Plugin Name: CMB2 Field Type: Google Maps
 Plugin URI: https://github.com/mustardBees/cmb_field_map
 GitHub Plugin URI: https://github.com/mustardBees/cmb_field_map
 Description: Google Maps field type for CMB2.
-Version: 2.2.0
+Version: 2.3.0
 Author: Phil Wylie
 Author URI: https://www.philwylie.co.uk/
 License: GPLv2+
@@ -18,7 +18,7 @@ class PW_CMB2_Field_Google_Maps {
 	/**
 	 * Current version number.
 	 */
-	const VERSION = '2.2.0';
+	const VERSION = '2.3.0';
 
 	/**
 	 * Initialize the plugin by hooking into CMB2.
