@@ -12,9 +12,11 @@
 		var mapCanvas = mapInstance.find( '.pw-map' );
 		var latitude = mapInstance.find( '.pw-map-latitude' );
 		var longitude = mapInstance.find( '.pw-map-longitude' );
-		var $resetBtn = mapInstance.find('.pw-map-reset');
-		var latLng = new google.maps.LatLng( 54.800685, -4.130859 );
-		var zoom = 5;
+		var resetBtn = mapInstance.find('.pw-map-reset');
+		var defaultLatLng = new google.maps.LatLng( 54.800685, -4.130859 );
+		var defaultZoom = 5;
+		var latLng = defaultLatLng;
+		var zoom = defaultZoom;
 
 		// If we have saved values, let's set the position and zoom level
 		if ( latitude.val().length > 0 && longitude.val().length > 0 ) {
@@ -58,6 +60,10 @@
 				map.setZoom( 17 );
 			}
 
+			// Ensure marker is on the map (it may have been removed by reset)
+			if ( ! marker.getMap() ) {
+				marker.setMap( map );
+			}
 			marker.setPosition( place.geometry.location );
 
 			latitude.val( place.geometry.location.lat() );
@@ -77,11 +83,11 @@
 		});
 
 		// Reset button handler
-		$resetBtn.on('click', function(e) {
+		resetBtn.on('click', function(e) {
 			e.preventDefault();
 			marker.setMap(null);
-			map.setCenter(latLng);
-			map.setZoom(5);
+			map.setCenter(defaultLatLng);
+			map.setZoom(defaultZoom);
 			latitude.val('');
 			longitude.val('');
 		});
