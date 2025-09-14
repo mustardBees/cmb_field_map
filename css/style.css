@@ -8,7 +8,16 @@
 .pw-map img {
 	max-width: none;
 }
-.cmb2-wrap.form-table .cmb-row.cmb-type-pw-map > .cmb-td{
-    width: 100%;
-    max-width: 540px;
+#edittag .cmb-row.cmb-type-pw-map {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+#edittag .cmb-row.cmb-type-pw-map > .cmb-td {
+    flex-grow: 1;
+}
+#edittag .cmb-row.cmb-type-pw-map > .cmb-td > .pw-map,
+#edittag .cmb-row.cmb-type-pw-map > .cmb-td > .pw-map-search {
+    max-width: 95%;
+    width: 540px;
 }
